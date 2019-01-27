@@ -8,7 +8,7 @@ class URLExtractor:
     def parse(self, urlline):
         url = urlline.strip()
         protocol = url.split(sep=":")[0]
-        if "file" is in protocol:
+        if "file" in protocol:
             pass  # open local file as document
         else:
             pass  # fetch remote html file
