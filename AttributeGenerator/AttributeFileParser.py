@@ -18,13 +18,15 @@ class AttributeFileParser:
         regex = ''.join(attributeline.split(sep="|")[1:])
         parsedattribute = self.attributeParser.parse(attribute)
         parsedregex = self.regexParser.parse(regex)
-        return parsedattribute, parsedregex
+        return parsedattribute, parsedregex  # returns tuple (attributename, regex)
 
     def read_all_attributes(self):
         attributelist = []
         for line in self.fileEntity.readlines():
             attributelist.append(self.read_single_attribute(line))
-        return attributelist
+        return attributelist  # returns list of tuples [(attr1, regex1), (attr2, regex2)]
 
     def destroy(self):
+        # close file reader
         self.fileEntity.close()
+        # TODO deal with created extractor objects as needed
