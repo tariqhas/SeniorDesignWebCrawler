@@ -14,10 +14,11 @@ class AttributeFileParser:
 
     def read_single_attribute(self, attributeline):
         attribute = attributeline.split(sep="|")[0]
-        # only first pipe is treated as delimiter, others are treated as part of regex
+        ruletype = attributeline.split(sep="|")[1]
+        # only first 2 pipes are treated as delimiter, others are treated as part of regex/XPATH
         regex = ''.join(attributeline.split(sep="|")[1:])
-        parsedattribute = self.attributeParser.parse(attribute)
-        parsedregex = self.regexParser.parse(regex)
+        parsedattribute = self.attributeParser.parse(attribute, ruletype)
+        parsedregex = self.regexParser.parse(ruletype, regex)
         return parsedattribute, parsedregex  # returns tuple (attributename, regex)
 
     def read_all_attributes(self):

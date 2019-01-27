@@ -1,3 +1,4 @@
+import re
 
 
 class RegexExtractor:
@@ -5,5 +6,5 @@ class RegexExtractor:
     def __init__(self):
         pass
 
-    def parse(self, regex):
+    def parse(self, regex, ruletype):
         pass

@@ -6,4 +6,4 @@ class AttributeExtractor:
         pass
 
     def parse(self, attribute):
-        pass
+        return attribute  # TODO error detection and handling? Trim spaces? Invalid symbols?
