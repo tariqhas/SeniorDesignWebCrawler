@@ -14,8 +14,8 @@ class URLFileParser:
     def read_single_url(self, urlline):
         protocol = urlline.split(sep=":")[0]
         url = ''.join(urlline.split(sep=":")[1:])
-        parsedUrl = self.urlParser.parse(url, protocol)
-        return parsedUrl
+        parsedProtocol,parsedUrl = self.urlParser.parse(url, protocol)
+        return parsedProtocol, parsedUrl
 
     def read_all_urls(self):
         urllist = []

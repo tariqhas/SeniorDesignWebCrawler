@@ -9,8 +9,8 @@ class URLExtractor:
         url = urlline.strip()
         protocol = url.split(sep=":")[0]
         if "file" in protocol:
-            pass  # open local file as document
+            return "local", url  # open local file as document
         else:
-            pass  # fetch remote html file
+            return "http", url
 
     # Given a line from a file, determine the URL string and the URL type and return them as a tuple
