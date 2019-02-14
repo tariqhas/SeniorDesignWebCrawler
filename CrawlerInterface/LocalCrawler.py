@@ -1,4 +1,5 @@
 import re
+import xml.etree.ElementTree as et
 
 
 class LocalCrawler:
@@ -21,7 +22,11 @@ class LocalCrawler:
                         except Exception as e:
                             pass  # TODO handle exception from re.find here if needed
                     elif rtype=='xpath':
-                        pass  # TODO parse as ElementTree and extract Xpath result
+                        try:
+                            tree = et.parse(url)  # This can also be read from string using et.fromstring(urldata)
+                            urldata[name] = et.find(patt)
+                        except et.ParseError:
+                            pass  # TODO handle parse error
                     else:
                         # invalid attribute data
                         raise Exception(message="Attribute Data Malformed : " + name+ ' ' + rtype + ' ' + patt)
