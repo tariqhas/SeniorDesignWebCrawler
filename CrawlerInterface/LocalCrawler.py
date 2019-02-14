@@ -16,12 +16,12 @@ class LocalCrawler:
                 filetext = fin.read()
                 for a in self.attributes:
                     name, rtype, patt = a
-                    if rtype=='regex':
+                    if rtype == 'regex':
                         try:
                             urldata[name] = re.find(patt, filetext)
                         except Exception as e:
                             pass  # TODO handle exception from re.find here if needed
-                    elif rtype=='xpath':
+                    elif rtype == 'xpath':
                         try:
                             tree = et.parse(url)  # This can also be read from string using et.fromstring(urldata)
                             urldata[name] = et.find(patt)
@@ -33,7 +33,6 @@ class LocalCrawler:
         except FileNotFoundError as e:
             pass  # TODO decide how to handle FNF exception
         self.fulldata[url] = urldata
-
 
     def getData(self):
         return self.fulldata
