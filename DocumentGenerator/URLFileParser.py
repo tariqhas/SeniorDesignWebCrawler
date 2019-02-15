@@ -13,8 +13,8 @@ class URLFileParser:
 
     def read_single_url(self, urlline):
         protocol = urlline.split(sep=":")[0]
-        url = ''.join(urlline.split(sep=":")[1:])
-        parsedProtocol,parsedUrl = self.urlParser.parse(url, protocol)
+        url = urlline
+        parsedProtocol, parsedUrl = self.urlParser.parse(url)
         return parsedProtocol, parsedUrl
 
     def read_all_urls(self):

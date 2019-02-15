@@ -35,4 +35,4 @@ class LocalCrawler:
         self.fulldata[url] = urldata
 
     def getData(self):
-        return self.fulldata
+        return self.fulldata  # returns dict of {url:dict of attribute:data} -> {url: {att1: data1, att2: data2}}

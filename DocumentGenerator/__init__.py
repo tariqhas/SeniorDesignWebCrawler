@@ -1,3 +1,2 @@
-from DocumentGenerator import DocumentRetriever
-from DocumentGenerator import URLExtractor
-from DocumentGenerator import URLFileParser
+from DocumentGenerator.URLExtractor import *
+from DocumentGenerator.URLFileParser import *
