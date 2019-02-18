@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Executor{% endblock %}
+{% block head %}
+    {{ super() }}
+    <style type="text/css">
+        .important { color: #336699; }
+    </style>
+{% endblock %}
+{% block content %}
+       <form class="container form-group" style="padding:5px">
+            <div class="row">
+                <span class="col"> Ruleset </span>
+                <div class="col" style="border-style:solid;border-width:1px;border-radius:5px;height:125px;overflow:auto">
+                    <input class="form-check-input" type="radio" name="Ruleset" value="Furnature" checked> Option 1 <br>
+                    <input class="form-check-input" type="radio" name="Ruleset" value="Furnature"> Option 2 <br>
+                    <input class="form-check-input" type="radio" name="Ruleset" value="Furnature"> Option 3 <br>
+                    <input class="form-check-input" type="radio" name="Ruleset" value="Furnature"> Option 4 <br>
+                    <input class="form-check-input" type="radio" name="Ruleset" value="Furnature"> Option 5 <br>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <span class="col" > URL List </span>
+                <div class="col form-check" style="border-style:solid;border-width:1px;border-radius:5px;height:125px;overflow:auto">
+                    <input class="form-check-input" type="radio" name="URL_List" value="Furnature" checked> Option 1 <br>
+                    <input class="form-check-input" type="radio" name="URL_List" value="Furnature"> Option 2 <br>
+                    <input class="form-check-input" type="radio" name="URL_List" value="Furnature"> Option 3 <br>
+                    <input class="form-check-input" type="radio" name="URL_List" value="Furnature"> Option 4 <br>
+                    <input class="form-check-input" type="radio" name="URL_List" value="Furnature"> Option 5 <br>
+                    <input class="form-check-input" type="radio" name="URL_List" value="Furnature"> Option 6 <br>
+                    <input class="form-check-input" type="radio" name="URL_List" value="Furnature"> Option 7 <br>
+                    <input class="form-check-input" type="radio" name="URL_List" value="Furnature"> Option 8 <br>
+                    <input class="form-check-input" type="radio" name="URL_List" value="Furnature"> Option 9 <br>
+                    <input class="form-check-input" type="radio" name="URL_List" value="Furnature"> Option 10 <br>
+                </div>
+            </div>
+            <br>
+            <button class="btn btn-primary">Go</button>
+
+        </form>
+{% endblock %}

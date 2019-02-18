@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="eng">
+<head>
+    {% block head %}
+    <link rel="stylesheet" href="static/bootstrap.min.css" />
+    <link rel="stylesheet" href="static/bootstrap-grid.min.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>{% block title %}{% endblock %}</title>
+    {% endblock %}
+</head>
+
+<body class="text-center clearfix">
+    <div class="border rounded shadow p-3 mb-5 bg-white rounded" id="content">
+       
+       <form class="container form-group" style="padding:5px">
+            <div class="row">
+                <span class="col"> Ruleset </span>
+                <div class="col" style="border-style:solid;border-width:1px;border-radius:5px;height:125px;overflow:auto">
+                    <input class="form-check-input" type="radio" name="Ruleset" value="Furnature" checked> Option 1 <br>
+                    <input class="form-check-input" type="radio" name="Ruleset" value="Furnature"> Option 2 <br>
+                    <input class="form-check-input" type="radio" name="Ruleset" value="Furnature"> Option 3 <br>
+                    <input class="form-check-input" type="radio" name="Ruleset" value="Furnature"> Option 4 <br>
+                    <input class="form-check-input" type="radio" name="Ruleset" value="Furnature"> Option 5 <br>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <span class="col" > URL List </span>
+                <div class="col form-check" style="border-style:solid;border-width:1px;border-radius:5px;height:125px;overflow:auto">
+                    <input class="form-check-input" type="radio" name="URL_List" value="Furnature" checked> Option 1 <br>
+                    <input class="form-check-input" type="radio" name="URL_List" value="Furnature"> Option 2 <br>
+                    <input class="form-check-input" type="radio" name="URL_List" value="Furnature"> Option 3 <br>
+                    <input class="form-check-input" type="radio" name="URL_List" value="Furnature"> Option 4 <br>
+                    <input class="form-check-input" type="radio" name="URL_List" value="Furnature"> Option 5 <br>
+                    <input class="form-check-input" type="radio" name="URL_List" value="Furnature"> Option 6 <br>
+                    <input class="form-check-input" type="radio" name="URL_List" value="Furnature"> Option 7 <br>
+                    <input class="form-check-input" type="radio" name="URL_List" value="Furnature"> Option 8 <br>
+                    <input class="form-check-input" type="radio" name="URL_List" value="Furnature"> Option 9 <br>
+                    <input class="form-check-input" type="radio" name="URL_List" value="Furnature"> Option 10 <br>
+                </div>
+            </div>
+            <br>
+            <button class="btn btn-primary">Go</button>
+
+        </form>
+       
+       
+       
+       
+       
+
+    {% block content %}{% endblock %}</div>
+    <div id="footer">
+        {% block footer %}
+        &copy; Copyright 2019
+        {% endblock %}
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<link rel="text/javascript" href="static/bootstrap.bundle.min.js"/>
+<link rel="text/javascript" href="static/jquery-3.3.1.min.js"/>
+
+{% block script %}{% endblock %}
+</html>
