@@ -10,11 +10,11 @@ class RegexExtractor:
 
     def parse(self, regex, ruletype=''):
         if ruletype.lower()=="regex":
-            self.parseRegex(regex)
+            return self.parseRegex(regex)
         elif ruletype.lower()=="xpath":
-            self.parseXpath(regex)
+            return self.parseXpath(regex)
         else:
-            self.parseRegex(regex)  # for now, we assume default behavior to be regex
+            return self.parseRegex(regex)  # for now, we assume default behavior to be regex
 
     def parseRegex(self, regex):
         try:
@@ -26,6 +26,6 @@ class RegexExtractor:
     def parseXpath(self, xpath):
         try:
             lxml.etree.XPath(xpath)
-            return xpath
+            return xpath.rstrip()
         except lxml.etree.XPathSyntaxError:
             raise Exception(message="Rule: "+xpath+" is not a valid XPath (did you mean to use regex?)")
