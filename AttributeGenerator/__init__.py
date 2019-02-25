@@ -1,3 +1,3 @@
-from AttributeGenerator import RegexExtractor
-from AttributeGenerator import AttributeExtractor
-from AttributeGenerator import AttributeFileParser
+from AttributeGenerator.RegexExtractor import *
+from AttributeGenerator.AttributeExtractor import *
+from AttributeGenerator.AttributeFileParser import *
