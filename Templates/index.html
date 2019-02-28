@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Index{% endblock %}
+{% block head %}
+    {{ super() }}
+    <style type="text/css">
+        .important { color: #336699; }
+    </style>
+{% endblock %}
+{% block content %}
+    <a href="/login.html">Login</a>
+    <div class="container">
+    {% example = { 1: {'name':'Mock Button'}, 2: {'name':'Mock Button'}, 3: {'name':'Mock Button'}} %}
+        <div class="row">
+            {% for item in example %}
+            <button class="btn btn-primary" onsubmit="$().ajax('/search',{});"> {{ item['name'] }} </button>
+            {% endfor %}
+        </div>
+        <div class="row">
+            {% for item in example %}
+            <button class="btn btn-primary" onsubmit="$().ajax('/search',{});"> {{ item['name'] }} </button>
+            {% endfor %}
+        </div>
+        <div class="row">
+            {% for item in example %}
+            <button class="btn btn-primary" onsubmit="$().ajax('/search',{});"> {{ item['name'] }} </button>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

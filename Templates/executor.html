@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %}Executor{% endblock %}
+{% block head %}
+    {{ super() }}
+    <style type="text/css">
+        .important { color: #336699; }
+    </style>
+{% endblock %}
+{% block content %}
+       <form class="container form-group" style="padding:5px">
+            <div class="row">
+                <span class="col"> Ruleset </span>
+                <div class="col" style="border-style:solid;border-width:1px;border-radius:5px;height:125px;overflow:auto">
+                    {% navigation = {
+                        1:{
+                         'name': 'Example Value 1',
+                         'value': 1,
+                         },
+                        2:{
+                        'name': 'Example Value 2',
+                        'value': 2,
+                         },
+                        3:{
+                        'name': 'Example Value 3',
+                        'value': 3,
+                         },
+                        4:{
+                        'name': 'Example Value 4',
+                        'value': 4,
+                         },
+                        5:{
+                        'name': 'Example Value 5',
+                        'value': 5,
+                         }
+                    }
+                    %}
+                    {% for items in naviagtion %}
+                    <input class="form-check-input" type="radio" name="Ruleset" value="{{ items['value'] }}" checked> {{ items['name'] }} <br>
+                    {% endfor %}
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <span class="col" > URL List </span>
+                <div class="col form-check" style="border-style:solid;border-width:1px;border-radius:5px;height:125px;overflow:auto">
+                    {% for items in naviagtion %}
+                    <input class="form-check-input" type="radio" name="Ruleset" value="{{ items['value'] }}" checked> {{ items['name'] }} <br>
+                    {% endfor %}
+                    {% for items in naviagtion %}
+                    <input class="form-check-input" type="radio" name="Ruleset" value="{{ items['value'] }}" checked> {{ items['name'] }} <br>
+                    {% endfor %}
+                </div>
+            </div>
+            <br>
+            <button class="btn btn-primary" onsubmit="$().ajax('/run-crawler',{});">Go</button>
+
+        </form>
+{% endblock %}
