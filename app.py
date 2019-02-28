@@ -42,3 +42,15 @@ def executor():
                          }
                     }
     return render_template('executor.html', navigation = navi)
+
+@app.route('/upload/')
+def upload():
+    return render_template('upload.html')
+
+@app.route('/admin/')
+def admin():
+    return render_template('admin.html')
+
+@app.route('/search/')
+def search():
+    return render_template('search.html')
