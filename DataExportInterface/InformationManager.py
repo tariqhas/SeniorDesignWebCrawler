@@ -9,6 +9,7 @@ class InformationManager:
     def createDataframe(self, data):
         # data is url: data dict as defined in crawler interface
         self.data_df = pd.DataFrame(data)
+        self.data_df.index.name = "URL"
 
     def exportDataframeAsExcel(self, documentname = 'crawleroutput.xls'):  # export to DB will come later
-        self.data_df.to_excel(documentname)
+        self.data_df.to_excel(documentname, index_label=True)

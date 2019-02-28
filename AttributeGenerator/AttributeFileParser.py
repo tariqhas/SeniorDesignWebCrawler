@@ -1,4 +1,5 @@
 from AttributeGenerator import *
+import pandas as pd
 
 
 class AttributeFileParser:
@@ -23,6 +24,8 @@ class AttributeFileParser:
 
     def read_all_attributes(self):
         attributelist = []
+        if self.filename.split('.')[1] not in ('txt','psv'):  # if not txt or psv, read excel
+            attributelist = pd.read_excel(self.filename).to_records(index=False).tolist()
         for line in self.fileEntity.readlines():
             attributelist.append(self.read_single_attribute(line))
         return attributelist  # returns list of tuples [(attr1, regex1), (attr2, regex2)]
