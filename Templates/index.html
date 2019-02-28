@@ -9,20 +9,21 @@
 {% block content %}
     <a href="/login.html">Login</a>
     <div class="container">
+    {% example = { 1: {'name':'Mock Button'}, 2: {'name':'Mock Button'}, 3: {'name':'Mock Button'}} %}
         <div class="row">
-            <button class="btn btn-primary">Buttons!</input>
-            <button class="btn btn-primary">Buttons!</button>
-            <button class="btn btn-primary">Buttons!</button>
+            {% for item in example %}
+            <button class="btn btn-primary" onsubmit="$().ajax('/search',{});"> {{ item['name'] }} </button>
+            {% endfor %}
         </div>
         <div class="row">
-            <button class="btn btn-primary">Buttons!</button>
-            <button class="btn btn-primary">Buttons!</button>
-            <button class="btn btn-primary">Buttons!</button>
+            {% for item in example %}
+            <button class="btn btn-primary" onsubmit="$().ajax('/search',{});"> {{ item['name'] }} </button>
+            {% endfor %}
         </div>
         <div class="row">
-            <button class="btn btn-primary">Buttons!</button>
-            <button class="btn btn-primary">Buttons!</button>
-            <button class="btn btn-primary">Buttons!</button>
+            {% for item in example %}
+            <button class="btn btn-primary" onsubmit="$().ajax('/search',{});"> {{ item['name'] }} </button>
+            {% endfor %}
         </div>
     </div>
 {% endblock %}

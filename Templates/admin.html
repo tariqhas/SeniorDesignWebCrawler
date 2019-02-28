@@ -7,7 +7,7 @@
     </style>
 {% endblock %}
 {% block content %}
-    <button class="btn">Upload Ruleset/URLset</button>
-    <button class="btn">Execute Crawl</button>
-    <button class="btn">Go Back</button>
+    <button class="btn" onclick="$().ajax('/upload',{});">Upload Ruleset/URLset</button>
+    <button class="btn" onclick="$().ajax('/crawl',{});">Execute Crawl</button>
+    <button class="btn" onclick="$(document).back();">Go Back</button>
 {% endblock %}
