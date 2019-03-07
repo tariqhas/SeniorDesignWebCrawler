@@ -6,6 +6,7 @@ create table Urls
 (
 	UrlId int auto_increment,
 	Url varchar(255),
+	UrlType varchar(255),
 	UrlComment varchar(255),
 	Primary Key(UrlId)
 );
@@ -20,16 +21,7 @@ create table Attributes
 	Pattern varchar(255),
 	Primary Key(AttributeId)
 );
-
-insert into Urls(Url,UrlComment) values ('www.wikipedia.com','');
-insert into Urls(Url,UrlComment) values ('www.google.com','');
-insert into Urls(Url,UrlComment) values ('www.unb.ca','');
-
-select * from Urls where UrlId = 1;
+/*select * from Urls where UrlId = 1;
 Delete from Urls where UrlId = 1;
 
-
-insert into Attributes(AttributeName,AttributeType,Pattern) values ('aaa','r','bbb');
-insert into Attributes(AttributeName,AttributeType,Pattern) values ('ccc','x','ddd');
-insert into Attributes(AttributeName,AttributeType,Pattern) values ('eee','r','fff');
 
