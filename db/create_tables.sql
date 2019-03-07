@@ -1,6 +1,8 @@
 CREATE DATABASE IF NOT EXISTS seniordesign;
 USE seniordesign;
 
+SET FOREIGN_KEY_CHECKS = 0;
+
 DROP TABLE IF EXISTS UrlIndex;
 create table UrlIndex
 (
@@ -30,13 +32,13 @@ create table AttributeIndex
 	AttributeId int auto_increment,
 	FileName varchar(255),
 	AttributeListName varchar(255),
-	PRIMARY KEY(UrlId)
+	PRIMARY KEY(AttributeId)
 );
 
 DROP TABLE IF EXISTS Attributes;
 create table Attributes
 (
-	AttributeId int auto_increment,
+	AttributeId int,
 	AttributeName varchar(255),
 	AttributeType varchar(10),
 	Pattern varchar(255),
@@ -46,6 +48,8 @@ create table Attributes
 		ON DELETE CASCADE
 		ON UPDATE RESTRICT
 );
+
+SET FOREIGN_KEY_CHECKS = 1;
 /*select * from Urls where UrlId = 1;
 Delete from Urls where UrlId = 1;
 
