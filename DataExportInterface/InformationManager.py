@@ -13,3 +13,9 @@ class InformationManager:
 
     def exportDataframeAsExcel(self, documentname = 'crawleroutput.xls'):  # export to DB will come later
         self.data_df.to_excel(documentname, index_label=True)
+
+    def getDocumentListById(self, docid):
+        return [("hint", "protocol", "url")]  # TODO this needs to be the list stored in the database with given id
+
+    def getAttributeListById(self, attid):
+        return [("name", "type", "patt")]  # TODO see above

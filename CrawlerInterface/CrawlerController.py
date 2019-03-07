@@ -2,9 +2,6 @@ from CrawlerInterface import *
 
 class CrawlerController:
 
-    def __init__(self):
-        pass
-
     def selectAttributes(self, attributeList):
         self.local = LocalCrawler(attributeList)
         self.http = HttpCrawler(attributeList)
