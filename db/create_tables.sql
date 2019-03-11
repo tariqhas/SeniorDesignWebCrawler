@@ -49,6 +49,15 @@ create table Attributes
 		ON UPDATE RESTRICT
 );
 
+DROP TABLE IF EXISTS CrawlDataIndex;
+CREATE TABLE CrawlDataIndex
+(
+	CrawlDataId int auto_increment,
+	CrawlDataTableName varchar(255),
+	PRIMARY KEY(CrawlDataId)
+);
+# Not sure if we need the above, it serves as a list of crawl data that has been created
+
 SET FOREIGN_KEY_CHECKS = 1;
 /*select * from Urls where UrlId = 1;
 Delete from Urls where UrlId = 1;
