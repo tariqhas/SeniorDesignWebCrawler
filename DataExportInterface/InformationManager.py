@@ -19,3 +19,6 @@ class InformationManager:
 
     def getAttributeListById(self, attid):
         return [("name", "type", "patt")]  # TODO see above
+
+    def saveAttributeData(self, attdata):
+        return 1 # TODO make this the att data index id

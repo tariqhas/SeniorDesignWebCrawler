@@ -1,6 +1,7 @@
 from flask import Flask, render_template, flash, request, redirect, url_for
 from CrawlerInterface import *
 from DataExportInterface import *
+from AttributeGenerator import *
 from werkzeug.utils import secure_filename
 import os
 
@@ -97,7 +98,9 @@ def upload_attributes_file():
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            # TODO here, we need to parse the new file, delete it, and return the id that corresponds to the db data
-            return 1 # temp value
+            attparser = AttributeFileParser(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            attdata = attparser.read_all_attributes()
+            # Todo save attdata to DB
+            return 1 # temp value, will be attdata index id
 
 
