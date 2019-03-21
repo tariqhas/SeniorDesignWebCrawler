@@ -4,10 +4,11 @@ from DataExportInterface import *
 from AttributeGenerator import *
 from werkzeug.utils import secure_filename
 import os
+from config import *
 
 app = Flask(__name__)
 cc = CrawlerController()
-db = InformationManager()
+db = InformationManager(config.local_db)
 
 UPLOAD_FOLDER = '/uploads'
 ALLOWED_EXTENSIONS = set(['txt', 'xls', 'xlsx', 'csv', 'psv']) # for att/doc list uploads

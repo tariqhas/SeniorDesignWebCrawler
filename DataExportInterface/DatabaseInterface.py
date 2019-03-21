@@ -1,5 +1,5 @@
 import pymysql as mariadb
-import pymysql.cursors
+import pandas as pd
 
 class DatabaseInterface:
 
@@ -44,3 +44,8 @@ class DatabaseInterface:
                 return res
             else:
                 return
+
+    def createNewDataTable(self, df, docid, attid):
+        tablename = "table_" + str(docid) + '_' + str(attid)
+        df.to_sql(name=tablename, con=self.conn, if_exists='overwrite')
+        return tablename

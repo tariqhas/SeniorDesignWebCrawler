@@ -60,6 +60,22 @@ CREATE TABLE CrawlDataIndex
 
 SET FOREIGN_KEY_CHECKS = 1;
 /*select * from Urls where UrlId = 1;
-Delete from Urls where UrlId = 1;
+Delete from Urls where UrlId = 1;*/
+
+DELIMITER //
+
+CREATE PROCEDURE getDocumentListById(IN docid INT)
+ BEGIN
+	 SELECT * FROM Urls WHERE UrlId = docid;
+ end;
+//
+
+DELIMITER ;
+/* More stored procedures needed:
+Add attribute data -> create new record in attributedataindex, return attributeid of new record (assume filename and urllistname given)
+Add url data -> same as above, return urlid of new record
+get attribute data -> use the stored procedure above as example, but get attributes with a given attid
+Add crawltabledata -> given a table name, add a new record to crawldataindex and return crawldataid (If exists, replace)
+ */
 
 
