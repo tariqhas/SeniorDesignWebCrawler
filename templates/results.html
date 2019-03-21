@@ -10,15 +10,19 @@
     <table id="example" class="display" style="width:100%">
         <thead>
             <tr>
-                <th>Name</th>
-                <th>Position</th>
-                <th>Office</th>
-                <th>Age</th>
-                <th>Start date</th>
-                <th>Salary</th>
+                {% for label in header %}
+                <th>{{ label }}</th>
+                {% endfor %}
             </tr>
         </thead>
         <tbody>
+            {% for row in data %}
+            <tr>
+                {% for label in header %}
+                    <td>{{ data[row][label] }}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
             <tr>
                 <td>Tiger Nixon</td>
                 <td>System Architect</td>
@@ -487,7 +491,12 @@
             </tr>
         </tfoot>
     </table>
-    <script>$(document).ready(function() {
+    <a href="/index" class="btn btn-primary">Go Back</a>
+
+{% endblock %}
+
+{% block script %}
+<script>$(document).ready(function() {
     $('#example').DataTable();
 } );</script>
 {% endblock %}
