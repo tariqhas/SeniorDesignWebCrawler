@@ -1,4 +1,5 @@
 from AttributeGenerator import *
+import pandas as pd
 
 
 class AttributeFileParser:
@@ -16,13 +17,15 @@ class AttributeFileParser:
         attribute = attributeline.split(sep="|")[0]
         ruletype = attributeline.split(sep="|")[1]
         # only first 2 pipes are treated as delimiter, others are treated as part of regex/XPATH
-        regex = ''.join(attributeline.split(sep="|")[1:])
-        parsedattribute = self.attributeParser.parse(attribute, ruletype)
-        parsedregex = self.regexParser.parse(ruletype, regex)
-        return parsedattribute, parsedregex  # returns tuple (attributename, regex)
+        regex = '|'.join(attributeline.split(sep="|")[2:])
+        parsedattribute = self.attributeParser.parse(attribute)
+        parsedregex = self.regexParser.parse(regex, ruletype=ruletype)
+        return parsedattribute, ruletype, parsedregex  # returns tuple (attributename, regex)
 
     def read_all_attributes(self):
         attributelist = []
+        if self.filename.split('.')[1] not in ('txt','psv'):  # if not txt or psv, read excel
+            attributelist = pd.read_excel(self.filename).to_records(index=False).tolist()
         for line in self.fileEntity.readlines():
             attributelist.append(self.read_single_attribute(line))
         return attributelist  # returns list of tuples [(attr1, regex1), (attr2, regex2)]
