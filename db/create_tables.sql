@@ -11,6 +11,8 @@ create table UrlIndex
 	URLListName varchar(255),
 	PRIMARY KEY(UrlId)
 );
+ALTER TABLE UrlIndex AUTO_INCREMENT = 1;
+
 
 DROP TABLE IF EXISTS Urls;
 create table Urls
@@ -34,6 +36,7 @@ create table AttributeIndex
 	AttributeListName varchar(255),
 	PRIMARY KEY(AttributeId)
 );
+ALTER TABLE AttributeIndex AUTO_INCREMENT = 1;
 
 DROP TABLE IF EXISTS Attributes;
 create table Attributes
@@ -70,9 +73,15 @@ CREATE PROCEDURE getDocumentListById(IN docid INT)
  end;
 //
 
+CREATE PROCEDURE addAttributeIndex(IN attfilename VARCHAR(255), IN attname VARCHAR(255))
+	BEGIN
+		INSERT INTO AttributeIndex (FileName, AttributeListName) VALUES (attfilename, attname);
+		SELECT LAST_INSERT_ID();
+	end; //
+
 DELIMITER ;
 /* More stored procedures needed:
-Add attribute data -> create new record in attributedataindex, return attributeid of new record (assume filename and urllistname given)
+Tests for all existing procedures (Use insert_test_values.sql or python)
 Add url data -> same as above, return urlid of new record
 get attribute data -> use the stored procedure above as example, but get attributes with a given attid
 Add crawltabledata -> given a table name, add a new record to crawldataindex and return crawldataid (If exists, replace)

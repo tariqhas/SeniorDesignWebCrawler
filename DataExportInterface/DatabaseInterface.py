@@ -1,5 +1,6 @@
 import pymysql as mariadb
 import pandas as pd
+import pymysql.cursors
 
 class DatabaseInterface:
 
@@ -32,13 +33,13 @@ class DatabaseInterface:
     def modifySql(self, query):
         with self.conn.cursor() as cursor:
             cursor.execute(query)
-            cursor.commit()
+            self.conn.commit()
         return
 
     def runStoredProcedure(self, procedureName, args): # args is a tuple of inputs to the procedure
         with self.conn.cursor() as cursor:
             cursor.callproc(procedureName, args)
-            cursor.commit()
+            self.conn.commit()
             res = cursor.fetchall()
             if res is not None:
                 return res

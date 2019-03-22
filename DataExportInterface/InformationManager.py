@@ -1,5 +1,5 @@
 import pandas as pd
-from DataExportInterface import *
+from DataExportInterface.DatabaseInterface import *
 
 
 class InformationManager:
@@ -29,8 +29,13 @@ class InformationManager:
     def getAttributeListById(self, attid):
         return [("name", "type", "patt")]  # TODO see above
 
-    def saveAttributeData(self, attdata):
-        return 1 # TODO make this the att data index id
+    def addAttributeData(self, attdata, filename, attname):
+        attid = self.db.runStoredProcedure("addAttributeIndex", (filename, attname))[0][0]
+        print(attid)
+        for record in attdata:
+            name, atttype, patt = record
+            #self.db.runStoredProcedure("addAttributeData", (attid, name, atttype, patt))
+        return attid # TODO make this the att data index id
 
     def getCrawlData(self, docid, attid):
         tablename = "table_" + str(docid) + '_' + str(attid)
