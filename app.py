@@ -25,7 +25,7 @@ def index():
     # At this point, we need to pull all of the ruleset names and psudo-keys
     rulesets = {1: {'name': 'Furniture'}, 2: {'name': 'Cars'}, 3: {'name': 'Phones'}, 4: {'name': 'Watches'}}
 
-    return render_template('index.html', rulesets=rulesets)
+    return render_template('index2.html', rulesets=rulesets)
 
 @app.route('/search')
 def emptySearch():
@@ -40,13 +40,13 @@ def showSearch(ruleset=None):
 
     data = {1: {'Name': 'Joshua Kirby', 'Position': 'BS SwE Student', 'Office': 'Fredericton', 'Age': '22?', 'Start date': '2019/01/26', "Salary": '$0'}} # example data
 
-    return render_template("results.html", header=header, data=data)
+    return render_template("results2.html", header=header, data=data)
 
 @app.route('/admin')
 def admin():
     # There should be authentication here but it's not to make dev easier
 
-    return render_template('admin.html')
+    return render_template('admin2.html')
 
 @app.route('/executor')
 def executor():
@@ -57,7 +57,7 @@ def executor():
 
     urlsets = {1: {'name': 'Wikipedia'}, 2: {'name': 'AutoTrader'}, 3: {'name': 'Phone Websites'}, 4: {'name': 'The Fifth Watches'}, 5: {'name': 'Government of Canada'}, 6: {'name': 'Fake Websites'}, 7: {'name': 'Line Filler'}, 8: {'name': 'Images of Cats'}}
 
-    return render_template('executor.html', rulesets=rulesets, urlsets=urlsets)
+    return render_template('executor2.html', rulesets=rulesets, urlsets=urlsets)
 
 @app.route('/run')
 def run():
@@ -71,7 +71,7 @@ def run():
 
 @app.route('/upload')
 def upload():
-    return render_template('/upload.html')
+    return render_template('/upload2.html')
 
 @app.route('/file', methods=['POST'])
 def file():
