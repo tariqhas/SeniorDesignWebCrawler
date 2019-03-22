@@ -5,6 +5,7 @@ from AttributeGenerator import *
 from werkzeug.utils import secure_filename
 import os
 from config import *
+from flask import abort,jsonify
 
 app = Flask(__name__)
 cc = CrawlerController()
@@ -18,60 +19,82 @@ def allowed_file(filename):
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @app.route('/')
-def hello_world():
-    return 'Hello, World!'
+@app.route('/index')
+def index():
+
+    # At this point, we need to pull all of the ruleset names and psudo-keys
+    rulesets = {1: {'name': 'Furniture'}, 2: {'name': 'Cars'}, 3: {'name': 'Phones'}, 4: {'name': 'Watches'}}
+
+    return render_template('index.html', rulesets=rulesets)
+
+@app.route('/search')
+def emptySearch():
+    return abort(404)
+
+@app.route('/search/<ruleset>')
+def showSearch(ruleset=None):
+
+    # At this point, we need to pull the data from the DB and build a data table from it using the ruleset selected
+
+    header = ['Name', 'Position', 'Office', 'Age', 'Start date', 'Salary'] # example header
+
+    data = {1: {'Name': 'Joshua Kirby', 'Position': 'BS SwE Student', 'Office': 'Fredericton', 'Age': '22?', 'Start date': '2019/01/26', "Salary": '$0'}} # example data
+
+    return render_template("results.html", header=header, data=data)
+
+@app.route('/admin')
+def admin():
+    # There should be authentication here but it's not to make dev easier
+
+    return render_template('admin.html')
+
+@app.route('/executor')
+def executor():
+
+    # There should be data built to show all the rule and url sets
+
+    rulesets = {1: {'name': 'Furniture'}, 2: {'name': 'Cars'}, 3: {'name': 'Phones'}, 4: {'name': 'Watches'}}
+
+    urlsets = {1: {'name': 'Wikipedia'}, 2: {'name': 'AutoTrader'}, 3: {'name': 'Phone Websites'}, 4: {'name': 'The Fifth Watches'}, 5: {'name': 'Government of Canada'}, 6: {'name': 'Fake Websites'}, 7: {'name': 'Line Filler'}, 8: {'name': 'Images of Cats'}}
+
+    return render_template('executor.html', rulesets=rulesets, urlsets=urlsets)
+
+@app.route('/run')
+def run():
+
+    ruleset = request.args.get('Ruleset')
+    urlset = request.args.get('URLset')
+
+    # Trigger the crawl somehow ¯\_(ツ)_/¯
+
+    return executor()
+
+@app.route('/upload')
+def upload():
+    return render_template('/upload.html')
+
+@app.route('/file', methods=['POST'])
+def file():
+
+    val = request
+    if 'file' not in request.files:
+        error = "Missing data source!"
+        return jsonify({'error': error})
+
+    file = request.files['file']
+
+    file.save('/home/joshua/Desktop/ExampleUpload')
+
+    f = open(file)
+
+    return upload()
 
 
 @app.route('/localcrawltest/')
 def localcrawltest():
     return 'placeholder'
 
-@app.route('/index/')
-def index():
-    example = { 1: {'name':'Mock Button'}, 2: {'name':'Mock Button'}, 3: {'name':'Mock Button'}}
-    return render_template('index.html', example = example)\
 
-@app.route('/executor/')
-def executor():
-    navi = {
-                        1:{
-                         'name': 'Example Value 1',
-                         'value': 1,
-                         },
-                        2:{
-                        'name': 'Example Value 2',
-                        'value': 2,
-                         },
-                        3:{
-                        'name': 'Example Value 3',
-                        'value': 3,
-                         },
-                        4:{
-                        'name': 'Example Value 4',
-                        'value': 4,
-                         },
-                        5:{
-                        'name': 'Example Value 5',
-                        'value': 5,
-                         }
-                    }
-    return render_template('executor.html', navigation = navi)
-
-@app.route('/upload/')
-def upload():
-    return render_template('upload.html')
-
-@app.route('/admin/')
-def admin():
-    return render_template('admin.html')
-
-@app.route('/search/')
-def search():
-    return render_template('search.html')
-
-@app.route('/results/')
-def results():
-    return render_template('results.html')
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ API Methods Below Here ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 
@@ -105,3 +128,7 @@ def upload_attributes_file():
             return 1 # temp value, will be attdata index id
 
 
+
+@app.errorhandler(404)
+def errors():
+    return "Oops, this should be a page but isn't!"
