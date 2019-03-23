@@ -34,8 +34,12 @@ class InformationManager:
         print(attid)
         for record in attdata:
             name, atttype, patt = record
-            #self.db.runStoredProcedure("addAttributeData", (attid, name, atttype, patt))
+            self.db.runStoredProcedure("addAttributeData", (attid, name, atttype, patt))
         return attid # TODO make this the att data index id
+
+    def addDocumentData(self, docdata, filename, docname):
+        #todo
+        return 1
 
     def getCrawlData(self, docid, attid):
         tablename = "table_" + str(docid) + '_' + str(attid)

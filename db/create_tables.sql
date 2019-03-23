@@ -79,6 +79,11 @@ CREATE PROCEDURE addAttributeIndex(IN attfilename VARCHAR(255), IN attname VARCH
 		SELECT LAST_INSERT_ID();
 	end; //
 
+CREATE PROCEDURE addAttributeData(IN attid VARCHAR(255), IN attname VARCHAR(255), IN atttype VARCHAR(255), IN attpatt VARCHAR(255))
+	BEGIN
+		INSERT INTO Attributes (AttributeId, AttributeName, AttributeType, Pattern) VALUES (attid, attname, atttype, attpatt);
+	end; //
+
 DELIMITER ;
 /* More stored procedures needed:
 Tests for all existing procedures (Use insert_test_values.sql or python)

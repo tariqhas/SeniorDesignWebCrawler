@@ -1,4 +1,5 @@
 from DocumentGenerator import *
+import pandas as pd
 
 
 class URLFileParser:
@@ -9,7 +10,12 @@ class URLFileParser:
         else:
             raise AttributeError(message="Must provide filename to URLFileParser")
         self.urlParser = URLExtractor()
-        self.fileEntity = open(self.filename, 'r')  # create readable file object
+        if self.filename.split('.')[1] in ['xls','xlsx']:
+            self.isexcel = True
+            self.fileEntity = pd.read_excel(fin, names = ['hint','url'])
+        else:
+            self.isexcel = False
+            self.fileEntity = open(self.filename, 'r')  # create readable file object
 
     def read_single_url(self, urlline):
         protocol = urlline.split(sep=":")[0]
@@ -19,8 +25,17 @@ class URLFileParser:
 
     def read_all_urls(self):
         urllist = []
-        for line in self.fileEntity.readlines():
-            urllist.append(self.read_single_url(line))
+        if self.isexcel:
+            for i, row in self.fileEntity.iterrows():
+                hint = row['hint']
+                url = row['url']
+                protocol, parsedUrl = self.read_single_url(url)
+                urllist.append((hint, protocol, parsedUrl))
+        else:
+            for line in self.fileEntity.readlines():
+                hint = line.split('|')[0]
+                protocol, parsedUrl = self.read_single_url(''.join(line.split('|')[1:]))
+                urllist.append((hint, protocol, parsedUrl))
         return urllist
 
     def destroy(self):
