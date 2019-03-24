@@ -83,13 +83,35 @@ CREATE PROCEDURE addAttributeData(IN attid VARCHAR(255), IN attname VARCHAR(255)
 	BEGIN
 		INSERT INTO Attributes (AttributeId, AttributeName, AttributeType, Pattern) VALUES (attid, attname, atttype, attpatt);
 	end; //
+															 
+CREATE PROCEDURE addURLData(IN urlIn VARCHAR(255), IN urlTypeIn VARCHAR(255), IN urlCommentIn VARCHAR(255), OUT UrlId)
+	BEGIN
+		INSERT INTO Urls (Url, UrlType, UrlComment) VALUES (urlIn, urlTypeIn, urlCommentIn);
+		SELECT LAST_INSERT_ID();
+	end; //
 
+CREATE PROCEDURE getAttrData(IN attIdIn INT)
+	BEGIN
+		SELECT AttributeName, AttributeType, Pattern FROM Attributes WHERE AttributeId = attIdIn;
+	end; //
+
+CREATE PROCEDURE crawltabledata(IN tableNameIn varchar(255))
+	IF EXISTS (SELECT 1 FROM CrawlDataIndex WHERE CrawlDataTableName = tableNameIn)
+	BEGIN
+		INSERT INTO CrawlDataIndex (CrawlDataTableName) VALUES (tableNameIn);
+		SELECT LAST_INSERT_ID();
+	end; //
+	ELSE
+	BEGIN
+		INSERT INTO CrawlDataIndex (CrawlDataTableName) VALUES (tableNameIn);
+		SELECT LAST_INSERT_ID();
+	end; //
 DELIMITER ;
 /* More stored procedures needed:
 Tests for all existing procedures (Use insert_test_values.sql or python)
-Add url data -> same as above, return urlid of new record
-get attribute data -> use the stored procedure above as example, but get attributes with a given attid
-Add crawltabledata -> given a table name, add a new record to crawldataindex and return crawldataid (If exists, replace)
+Add url data -> same as above, return urlid of new record [done]
+get attribute data -> use the stored procedure above as example, but get attributes with a given attid [done]
+Add crawltabledata -> given a table name, add a new record to crawldataindex and return crawldataid (If exists, replace) [done]
  */
 
 
