@@ -18,3 +18,8 @@ insert into Urls(Url, UrlType, UrlComment) values ('www.unb.ca','','');
 insert into Attributes(AttributeName,AttributeType,Pattern) values ('aaa','r','bbb');
 insert into Attributes(AttributeName,AttributeType,Pattern) values ('ccc','x','ddd');
 insert into Attributes(AttributeName,AttributeType,Pattern) values ('eee','r','fff');
+
+EXEC addUrlIndex urlfilenameIn = 'www.wikipedia.com', 'urlList';
+EXEC addURLData urlidIn = LAST_INSERT_ID(), urlIn = 'www.wikipedia.com', urltypeIn = '', urlcommentIn = '';
+EXEC getAttributeData attributeIdIn = '1';
+EXEC addCrawlTableData tableNameIn = 'exampleTable';
